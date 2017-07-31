@@ -1,47 +1,9 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './src/index.html',
-  filename: 'index.html',
-  inject: 'body'
-});
+const commonConfig = require('./build-utils/webpack.common');
+const webpackMerge = require('webpack-merge');
+
 
 module.exports = (env) => {
-    return {
-        entry: "./src/index.js",
-        output: {
-            filename: "assest/bundle.js",
-            path: path.join(__dirname,"dist")
-        },    
-        devtool: "source-map",
-        plugins:[HtmlWebpackPluginConfig],
-        module: {
-            rules: [
-                {
-                    test: /\.jsx?$/,
-                    use: "babel-loader",
-                    exclude: /node_modules/
-                },
-                {
-                    test: /\.css$/,
-                    use: [
-                        "style-loader",
-                        "css-loader"
-                    ]
-                },
-                {
-                    test: /\.scss$/,
-                    use: [
-                        "style-loader",
-                        "css-loader",
-                        "sass-loader"
-                    ]
-                },
-                {
-                    test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
-                    loader: 'url-loader'                
-                }
-            ]
-        }
-    };
+    const envConfig = require(`./build-utils/webpack.${env.env}.js`);
+    return webpackMerge(envConfig, commonConfig);
 };

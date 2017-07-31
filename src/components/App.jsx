@@ -4,7 +4,7 @@ class App extends React.Component {
     render(){
         return(
             <div>
-                <h1>Stater Kit React</h1>
+                <h1>Stater Kit ReactJS</h1>
             </div>
         );
     }
