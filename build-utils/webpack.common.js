@@ -9,9 +9,9 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 const config ={
-    entry: "./src/index.js",
+    entry: ["./src/index.js"],
     output: {
-        filename: "assest/bundle.js",
+        filename: "js/bundle.js",
         path: commonPaths.outputPath
     },
     module:{
@@ -22,7 +22,8 @@ const config ={
                     {
                         loader: "url-loader",
                         options: {
-                            limit: 10000
+                            limit: 10000,
+                            name: './images/[name].[ext]'
                         }
                     }
                 ]

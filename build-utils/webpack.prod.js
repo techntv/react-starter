@@ -1,27 +1,27 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const config = {
-    entry: ['./src/assets/scss/main.scss'],    
-    devtool: "source-map",   
+module.exports = {
+       
+    devtool: "source-map",
     module: {
-        rules: [
-                {
+            rules: [
+                 {
                     test: /\.jsx?$/,
                     use: "babel-loader",
                     exclude: /node_modules/
-                },
-                {
-                    test: /\.css$/,
-                    use: [
-                        "style-loader",
-                        "css-loader"
-                    ]
                 },
                 {
                     test: /\.scss$/,
                     use: ExtractTextPlugin.extract({
                         fallback: 'style-loader',                    
                         use: ['css-loader', 'sass-loader']
+                    })
+                },
+                {
+                    test: /\.css$/,
+                    use: ExtractTextPlugin.extract({
+                        use: "css-loader",
+                        fallback: "style-loader"
                     })
                 },
                 {
@@ -34,13 +34,11 @@ const config = {
                             }
                         }
 
-                    ]                   
-                }
-        ]
-    },
-    plugins: [
-        new ExtractTextPlugin('css/main.css')
-    ]
+                    ]             
+                }              
+            ]
+  },
+  plugins: [
+    new ExtractTextPlugin('css/main.css')    
+  ]
 }
-
-module.exports = config;
