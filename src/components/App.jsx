@@ -4,7 +4,11 @@ class App extends React.Component {
     render(){
         return(
             <div>
-                <h1><i className="fa fa-superpowers" aria-hidden="true"></i>Stater Kit ReactJS 2017 by techntvz</h1>
+                <h1>
+                    <i className="fa fa-superpowers" aria-hidden="true"></i>
+                    Hello World 2017
+                    <i className="fa fa-superpowers" aria-hidden="true"></i>
+                </h1>
             </div>
         );
     }
