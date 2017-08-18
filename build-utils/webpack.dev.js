@@ -2,7 +2,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
     entry: ['./src/assets/scss/main.scss'],    
-    devtool: "eval-source-map",    
+    devtool: "eval-source-map",
+    devServer: {
+        historyApiFallback: true,
+    },      
     module: {
         rules: [
                 {
